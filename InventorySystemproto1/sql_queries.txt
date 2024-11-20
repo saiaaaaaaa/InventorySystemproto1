@@ -1,0 +1,15 @@
+﻿CREATE TABLE InventorySystem_inventory(Brand varchar(64), Model varchar(128), Category varchar(64), Price decimal(32, 2), Stock int)
+
+INSERT INTO InventorySystem_inventory(Brand, Model, Category, Price, Stock) VALUES
+('SampleBrand1', 'SampleModel1', 'SampleCategory1', 10.99, 12),
+('SampleBrand2', 'SampleModel2', 'SampleCategory2', 13.99, 12),
+('SampleBrand3', 'SampleModel3', 'SampleCategory3', 4.75, 5),
+('SampleBrand4', 'SampleModel4', 'SampleCategory4', 25.50, 12),
+('SampleBrand5', 'SampleModel5', 'SampleCategory5', 1.99, 74),
+('SampleBrand6', 'SampleModel6', 'SampleCategory6', 7.99, 52),
+('SampleBrand7', 'SampleModel7', 'SampleCategory7', 8.99, 1),
+('SampleBrand8', 'SampleModel8', 'SampleCategory8', 45.50, 42),
+('SampleBrand9', 'SampleModel9', 'SampleCategory9', 10.00, 36),
+('SampleBrand10', 'SampleModel10', 'SampleCategory10', 10.50, 58),
+('SampleBrand11', 'SampleModel11', 'SampleCategory11', 10.75, 7),
+('SampleBrand12', 'SampleModel12', 'SampleCategory12', 11.99, 9)
