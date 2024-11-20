@@ -14,9 +14,9 @@ namespace InventorySystemproto1
 
         //NOTE: online sql server (for testing)
         static string hostname = "Data Source=sql.bsite.net\\MSSQL2016;";
-        static string database = "Initial Catalog=sasaia_SampleDB;";
-        static string username = "User ID=sasaia_SampleDB;";
-        static string password = "Password=samplepw;";
+        static string database = "Initial Catalog=saiaa_SampleDB;";
+        static string username = "User ID=saiaa_SampleDB;";
+        static string password = "Password=DBSamplePW;";
         public static SqlConnection connection = new SqlConnection(hostname + database + username + password);
         
         public static List<InventoryItem> inventoryList = new List<InventoryItem>();
