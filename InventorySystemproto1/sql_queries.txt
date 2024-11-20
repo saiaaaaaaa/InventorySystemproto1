@@ -13,3 +13,35 @@ INSERT INTO InventorySystem_inventory(Brand, Model, Category, Price, Stock) VALU
 ('SampleBrand10', 'SampleModel10', 'SampleCategory10', 10.50, 58),
 ('SampleBrand11', 'SampleModel11', 'SampleCategory11', 10.75, 7),
 ('SampleBrand12', 'SampleModel12', 'SampleCategory12', 11.99, 9)
+
+CREATE TABLE InventorySystem_orderhistory(OrderID varchar(16), Product varchar(192), Quantity int, OrderStatus varchar(64), DateAdded varchar(64))
+
+TRUNCATE TABLE InventorySystem_inventory
+
+INSERT INTO InventorySystem_inventory(Brand, Model, Category, Price, Stock) VALUES
+('SAMSUNG', 'NEO QLED QN900B', 'TV', 150000.99, 5),
+('LG', 'WT7900H', 'WASHING MACHINE', 49999.50, 8),
+('PANASONIC', 'NN-ST354W', 'OVEN', 14999.99, 10),
+('HAIER', 'HR-660D', 'REFRIGERATOR', 24999.95, 9),
+('WHIRLPOOL', 'WFE550S0JW', 'STOVE', 29999.99, 10),
+('SONY', 'X95K', 'TV', 99999.99, 12),
+('BOSCH', 'WAW28440GB', 'WASHING MACHINE', 39999.95, 4),
+('SHARP', 'RE-SS17W', 'OVEN', 11999.99, 23),
+('HISENSE', 'RT686N4BC', 'REFRIGERATOR', 19999.99, 0),
+('GE', 'JGB720SELSS', 'STOVE', 27999.99, 12),
+('SAMSUNG', 'RF28R7571SR', 'REFRIGERATOR', 2999.99, 5),
+('LG', 'WM3900HWA', 'WASHING MACHINE', 999.99, 7),
+('WHIRLPOOL', 'WRT111FZFW', 'REFRIGERATOR', 699.99, 7),
+('GE', 'JGB620SELSS', 'STOVE', 1299.99, 5),
+('KENMORE', 'EL17153WW', 'STOVE', 599.99, 15),
+('MAYTAG', 'MHW5630HW', 'WASHING MACHINE', 649.99, 8),
+('FRIGIDAIRE', 'FFTR1820TS', 'REFRIGERATOR', 549.99, 4),
+('INSIGNIA', 'NS-32DF310NA17', 'TV', 149.99, 13),
+('TOSHIBA', 'EMM4017A', 'OVEN', 79.99, 25),
+('BLACK+DECKER', 'BXCR10HT', 'VACUUM', 129.99, 98),
+('SONY', 'X95K', 'TV', 1999.99, 2),
+('LG', 'OLED65C24', 'TV', 2499.99, 1),
+('SAMSUNG', 'HW-Q990B', 'SPEAKER', 1299.99, 3),
+('SONOS', 'ROAM', 'SPEAKER', 199.99, 14),
+('DYSON', 'V15 DETECT TOTAL CLEAN', 'VACUUM', 699.99, 78),
+('APPLE', 'HOMEPOD MINI', 'SPEAKER', 99.99, 56)

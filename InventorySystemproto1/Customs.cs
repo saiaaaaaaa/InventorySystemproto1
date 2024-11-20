@@ -47,5 +47,50 @@
                 set { stock = value; }
             }
         }
+
+        public class OrderItem
+        {
+            string id, product, orderStatus, dateAdded;
+            int quantity;
+
+            public OrderItem(string id, string product, string orderStatus, string dateAdded, int quantity)
+            {
+                this.id = id;
+                this.product = product;
+                this.orderStatus = orderStatus;
+                this.dateAdded = dateAdded;
+                this.quantity = quantity;
+            }
+
+            public string ID
+            {
+                get { return id; }
+                set { id = value; }
+            }
+
+            public string Product
+            {
+                get { return product; }
+                set { product = value; }
+            }
+
+            public string OrderStatus
+            {
+                get { return orderStatus; }
+                set { orderStatus = value; }
+            }
+
+            public string DateAdded
+            {
+                get { return dateAdded; }
+                set { dateAdded = value; }
+            }
+
+            public int Quantity
+            {
+                get { return quantity; }
+                set { quantity = value; }
+            }
+        }
     }
 }

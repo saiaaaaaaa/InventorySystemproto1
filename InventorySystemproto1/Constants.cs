@@ -20,5 +20,6 @@ namespace InventorySystemproto1
         public static SqlConnection connection = new SqlConnection(hostname + database + username + password);
         
         public static List<InventoryItem> inventoryList = new List<InventoryItem>();
+        public static List<OrderItem> orderList = new List<OrderItem>();
     }
 }

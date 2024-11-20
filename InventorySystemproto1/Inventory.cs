@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using static InventorySystemproto1.Constants;
 using static InventorySystemproto1.Customs;
 
