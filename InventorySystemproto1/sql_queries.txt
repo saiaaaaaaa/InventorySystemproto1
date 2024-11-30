@@ -14,7 +14,7 @@ INSERT INTO InventorySystem_inventory(Brand, Model, Category, Price, Stock) VALU
 ('SampleBrand11', 'SampleModel11', 'SampleCategory11', 10.75, 7),
 ('SampleBrand12', 'SampleModel12', 'SampleCategory12', 11.99, 9)
 
-CREATE TABLE InventorySystem_orderhistory(OrderID varchar(16), Product varchar(192), Quantity int, OrderStatus varchar(64), DateAdded varchar(64))
+CREATE TABLE InventorySystem_orderhistory(OrderID int IDENTITY(1,1), Brand varchar(50), Model varchar(50), Category varchar(50), Quantity int, DateAdded date, OrderStatus varchar(64))
 
 TRUNCATE TABLE InventorySystem_inventory
 
@@ -45,3 +45,24 @@ INSERT INTO InventorySystem_inventory(Brand, Model, Category, Price, Stock) VALU
 ('SONOS', 'ROAM', 'SPEAKER', 199.99, 14),
 ('DYSON', 'V15 DETECT TOTAL CLEAN', 'VACUUM', 699.99, 78),
 ('APPLE', 'HOMEPOD MINI', 'SPEAKER', 99.99, 56)
+
+
+
+
+INSERT INTO InventorySystem_orderhistory VALUES 
+('BOSCH', 'WAW28440GB', 'WASHING MACHINE', 10, '01/20/2024', 'Delivered'),
+('SAMSUNG', 'HW-Q990B', 'SPEAKER', 12, '05/20/2024', 'Incoming'),
+('SHARP', 'RE-SS17W', 'OVEN', 29, '09/19/2024', 'Delivered'),
+('GE', 'JGB620SELSS', 'STOVE', 25, '10/16/2024', 'Cancelled'),
+('SONOS', 'ROAM', 'SPEAKER', 19, '10/29/2024', 'Cancelled'),
+('DYSON', 'V15 DETECT TOTAL CLEAN', 'VACUUM', 19, '10/29/2024', 'Incoming'),
+('KENMORE', 'EL17153WW', 'STOVE', 59, '10/30/2024', 'Delivered'),
+('MAYTAG', 'MHW5630HW', 'WASHING MACHINE', 25, '10/31/2024', 'Incoming'),
+('GE', 'JGB720SELSS', 'STOVE', 27, '11/01/2024', 'Cancelled'),
+('FRIGIDAIRE', 'FFTR1820TS', 'REFRIGERATOR', 15, '11/01/2024', 'Delivered'),
+('SAMSUNG', 'RF28R7571SR', 'REFRIGERATOR', 29, '11/05/2024', 'Incoming'),
+('HISENSE', 'RT686N4BC', 'REFRIGERATOR', 19, '11/07/2024', 'Delivered'),
+('APPLE', 'HOMEPOD MINI', 'SPEAKER', 99, '11/10/2024', 'Incoming'),
+('INSIGNIA', 'NS-32DF310NA17', 'TV', 14, '11/14/2024', 'Incoming'),
+('LG', 'WM3900HWA', 'WASHING MACHINE', 9, '11/14/2024', 'Delivered'),
+('WHIRLPOOL', 'WRT111FZFW', 'REFRIGERATOR', 16, '11/19/2024', 'Incoming')

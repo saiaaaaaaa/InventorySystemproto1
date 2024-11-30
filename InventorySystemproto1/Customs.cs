@@ -1,4 +1,5 @@
-﻿namespace InventorySystemproto1
+﻿using System;
+namespace InventorySystemproto1
 {
     public class Customs
     {
@@ -50,13 +51,17 @@
 
         public class OrderItem
         {
-            string id, product, orderStatus, dateAdded;
+            string id, brand, model, category, orderStatus;
             int quantity;
+            DateTime dateAdded;
 
-            public OrderItem(string id, string product, string orderStatus, string dateAdded, int quantity)
+
+            public OrderItem(string id, string brand, string model, string category, int quantity, DateTime dateAdded, string orderStatus)
             {
                 this.id = id;
-                this.product = product;
+                this.brand = brand;
+                this.model = model;
+                this.category = category; 
                 this.orderStatus = orderStatus;
                 this.dateAdded = dateAdded;
                 this.quantity = quantity;
@@ -68,10 +73,22 @@
                 set { id = value; }
             }
 
-            public string Product
+            public string Brand
             {
-                get { return product; }
-                set { product = value; }
+                get { return brand; }
+                set { brand = value; }
+            }
+
+            public string Model
+            {
+                get { return model; }
+                set { model = value; }
+            }
+
+            public string Category
+            {
+                get { return category; }
+                set { category = value; }
             }
 
             public string OrderStatus
@@ -80,7 +97,7 @@
                 set { orderStatus = value; }
             }
 
-            public string DateAdded
+            public DateTime DateAdded
             {
                 get { return dateAdded; }
                 set { dateAdded = value; }

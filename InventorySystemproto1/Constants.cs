@@ -8,9 +8,10 @@ namespace InventorySystemproto1
     {
         //NOTE: localhost sql server
         //NOTE: connect to localdb using server explorer 
-        //static string hostname = "Data Source=DESKTOP-0P0JELF\\SQLEXPRESS;"; //NOTE: change to your local host name
-        //static string database = "Initial Catalog=sampleDB;"; //NOTE: change to your local db name
-        //public static SqlConnection connection = new SqlConnection(hostname + database + "Integrated Security=True;");
+        static string hostname1 = "Data Source=Saga\\SQLEXPRESS;"; //NOTE: change to your local host name
+        static string database1 = "Initial Catalog=inventoryDB;;"; //NOTE: change to your local db name
+        public static SqlConnection connection1 = new SqlConnection(hostname1 + database1 + "Integrated Security=True;");
+
 
         //NOTE: online sql server (for testing)
         static string hostname = "Data Source=sql.bsite.net\\MSSQL2016;";
