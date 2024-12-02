@@ -14,7 +14,7 @@ INSERT INTO InventorySystem_inventory(Brand, Model, Category, Price, Stock) VALU
 ('SampleBrand11', 'SampleModel11', 'SampleCategory11', 10.75, 7),
 ('SampleBrand12', 'SampleModel12', 'SampleCategory12', 11.99, 9)
 
-CREATE TABLE InventorySystem_orderhistory(OrderID varchar(16), Product varchar(192), Quantity int, OrderStatus varchar(64), DateAdded varchar(64))
+CREATE TABLE InventorySystem_orderhistory(OrderID int IDENTITY(1,1), Brand varchar(50), Model varchar(50), Category varchar(50), Quantity int, DateAdded date, OrderStatus varchar(64))
 
 TRUNCATE TABLE InventorySystem_inventory
 
@@ -45,3 +45,77 @@ INSERT INTO InventorySystem_inventory(Brand, Model, Category, Price, Stock) VALU
 ('SONOS', 'ROAM', 'SPEAKER', 199.99, 14),
 ('DYSON', 'V15 DETECT TOTAL CLEAN', 'VACUUM', 699.99, 78),
 ('APPLE', 'HOMEPOD MINI', 'SPEAKER', 99.99, 56)
+
+
+INSERT INTO InventorySystem_orderhistory VALUES 
+('BOSCH', 'WAW28440GB', 'WASHING MACHINE', 10, '01/20/2024', 'Delivered'),
+('SAMSUNG', 'HW-Q990B', 'SPEAKER', 12, '05/20/2024', 'Incoming'),
+('SHARP', 'RE-SS17W', 'OVEN', 29, '09/19/2024', 'Delivered'),
+('GE', 'JGB620SELSS', 'STOVE', 25, '10/16/2024', 'Cancelled'),
+('SONOS', 'ROAM', 'SPEAKER', 19, '10/29/2024', 'Cancelled'),
+('DYSON', 'V15 DETECT TOTAL CLEAN', 'VACUUM', 19, '10/29/2024', 'Incoming'),
+('KENMORE', 'EL17153WW', 'STOVE', 59, '10/30/2024', 'Delivered'),
+('MAYTAG', 'MHW5630HW', 'WASHING MACHINE', 25, '10/31/2024', 'Incoming'),
+('GE', 'JGB720SELSS', 'STOVE', 27, '11/01/2024', 'Cancelled'),
+('FRIGIDAIRE', 'FFTR1820TS', 'REFRIGERATOR', 15, '11/01/2024', 'Delivered'),
+('SAMSUNG', 'RF28R7571SR', 'REFRIGERATOR', 29, '11/05/2024', 'Incoming'),
+('HISENSE', 'RT686N4BC', 'REFRIGERATOR', 19, '11/07/2024', 'Delivered'),
+('APPLE', 'HOMEPOD MINI', 'SPEAKER', 99, '11/10/2024', 'Incoming'),
+('INSIGNIA', 'NS-32DF310NA17', 'TV', 14, '11/14/2024', 'Incoming'),
+('LG', 'WM3900HWA', 'WASHING MACHINE', 9, '11/14/2024', 'Delivered'),
+('WHIRLPOOL', 'WRT111FZFW', 'REFRIGERATOR', 16, '11/19/2024', 'Incoming')
+
+CREATE TABLE InventorySystem_sales (Year int, Month varchar(50), Sales decimal(32,2))
+
+
+INSERT INTO InventorySystem_sales VALUES
+(2021, 'January', 5123705.72),
+(2021, 'February', 7107315.14),
+(2021, 'March', 8061310.78),
+(2021, 'April', 2905578.25),
+(2021, 'May', 7554429.48),
+(2021, 'June', 3385403.95),
+(2021, 'July', 6378206.73),
+(2021, 'August', 6774274.34),
+(2021, 'September', 3574988.85),
+(2021, 'October', 8999717.79),
+(2021, 'November', 9826862.37),
+(2021, 'December', 1062960.58),
+
+(2022, 'January', 5395234.06),
+(2022, 'February', 7190716.76),
+(2022, 'March', 9174556.4),
+(2022, 'April', 1560900.16),
+(2022, 'May', 8541289.35),
+(2022, 'June', 5685200.13),
+(2022, 'July', 5458332.65),
+(2022, 'August', 7026486.73),
+(2022, 'September', 4193733.83),
+(2022, 'October', 5180956.26),
+(2022, 'November', 5939277.2),
+(2022, 'December', 5765737.75),
+
+(2023, 'January', 2092194.41),
+(2023, 'February', 1562697.62),
+(2023, 'March', 9854099.47),
+(2023, 'April', 2504034.88),
+(2023, 'May', 3041968.29),
+(2023, 'June', 7209554.71),
+(2023, 'July', 4187240.58),
+(2023, 'August', 1485850.91),
+(2023, 'September', 9944773.17),
+(2023, 'October', 8749564.68),
+(2023, 'November', 2273864.85),
+(2023, 'December', 2927610.92),
+
+(2024, 'January', 9915163.14),
+(2024, 'February', 2575219.01),
+(2024, 'March', 6757498.04),
+(2024, 'April', 2520428.8),
+(2024, 'May', 9755673.61),
+(2024, 'June', 6966882.85),
+(2024, 'July', 4327591.07),
+(2024, 'August', 1553085.95),
+(2024, 'September', 1838026.05),
+(2024, 'October', 7084788.59),
+(2024, 'November', 9945321.19)

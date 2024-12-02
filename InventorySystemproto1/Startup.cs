@@ -22,10 +22,13 @@ namespace InventorySystemproto1
         private void Timer_Tick(object sender, EventArgs e)
         {
             SqlCommand sqlCommand0 = new SqlCommand("SELECT * FROM InventorySystem_inventory", connection);
+            SqlCommand sqlCommand1 = new SqlCommand("SELECT * FROM InventorySystem_orderhistory", connection1);
+            SqlCommand sqlCommand2 = new SqlCommand("SELECT * FROM InventorySystem_sales WHERE Year=2024", connection1);
 
             try
             {
                 connection.Open();
+                connection1.Open();
 
                 using (SqlDataReader reader = sqlCommand0.ExecuteReader())
                 {
@@ -34,6 +37,33 @@ namespace InventorySystemproto1
                         inventoryList.Add(new InventoryItem(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDecimal(3), reader.GetInt32(4)));
                     }
                 }
+
+
+                using (SqlDataReader reader = sqlCommand1.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        orderList.Add(new OrderItem(
+                             reader["OrderID"].ToString(),
+                             reader.GetString(1),
+                             reader.GetString(2),
+                             reader.GetString(3),
+                             reader.GetInt32(4),
+                             reader.GetDateTime(5),
+                             reader.GetString(6)));
+                    }
+                }
+
+                  using (SqlDataReader reader = sqlCommand2.ExecuteReader())
+                  {
+                      while (reader.Read())
+                      {
+                        salesList.Add(new SalesChart(
+                             reader.GetInt32(0),
+                             reader.GetString(1),
+                             reader.GetDecimal(2)));
+                      }
+                  }
 
                 timer.Stop();
                 new MainWindow(this).Show();
