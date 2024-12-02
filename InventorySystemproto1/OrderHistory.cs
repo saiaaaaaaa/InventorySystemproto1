@@ -109,7 +109,7 @@ namespace InventorySystemproto1
             if (orderList.Count > 0)
             {
                 foreach (OrderItem item in orderList)
-                {
+                {                    
                     bindingSource.Add(item);
                 }
 
