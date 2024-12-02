@@ -47,8 +47,6 @@ INSERT INTO InventorySystem_inventory(Brand, Model, Category, Price, Stock) VALU
 ('APPLE', 'HOMEPOD MINI', 'SPEAKER', 99.99, 56)
 
 
-
-
 INSERT INTO InventorySystem_orderhistory VALUES 
 ('BOSCH', 'WAW28440GB', 'WASHING MACHINE', 10, '01/20/2024', 'Delivered'),
 ('SAMSUNG', 'HW-Q990B', 'SPEAKER', 12, '05/20/2024', 'Incoming'),
@@ -66,3 +64,58 @@ INSERT INTO InventorySystem_orderhistory VALUES
 ('INSIGNIA', 'NS-32DF310NA17', 'TV', 14, '11/14/2024', 'Incoming'),
 ('LG', 'WM3900HWA', 'WASHING MACHINE', 9, '11/14/2024', 'Delivered'),
 ('WHIRLPOOL', 'WRT111FZFW', 'REFRIGERATOR', 16, '11/19/2024', 'Incoming')
+
+CREATE TABLE InventorySystem_sales (Year int, Month varchar(50), Sales decimal(32,2))
+
+
+INSERT INTO InventorySystem_sales VALUES
+(2021, 'January', 5123705.72),
+(2021, 'February', 7107315.14),
+(2021, 'March', 8061310.78),
+(2021, 'April', 2905578.25),
+(2021, 'May', 7554429.48),
+(2021, 'June', 3385403.95),
+(2021, 'July', 6378206.73),
+(2021, 'August', 6774274.34),
+(2021, 'September', 3574988.85),
+(2021, 'October', 8999717.79),
+(2021, 'November', 9826862.37),
+(2021, 'December', 1062960.58),
+
+(2022, 'January', 5395234.06),
+(2022, 'February', 7190716.76),
+(2022, 'March', 9174556.4),
+(2022, 'April', 1560900.16),
+(2022, 'May', 8541289.35),
+(2022, 'June', 5685200.13),
+(2022, 'July', 5458332.65),
+(2022, 'August', 7026486.73),
+(2022, 'September', 4193733.83),
+(2022, 'October', 5180956.26),
+(2022, 'November', 5939277.2),
+(2022, 'December', 5765737.75),
+
+(2023, 'January', 2092194.41),
+(2023, 'February', 1562697.62),
+(2023, 'March', 9854099.47),
+(2023, 'April', 2504034.88),
+(2023, 'May', 3041968.29),
+(2023, 'June', 7209554.71),
+(2023, 'July', 4187240.58),
+(2023, 'August', 1485850.91),
+(2023, 'September', 9944773.17),
+(2023, 'October', 8749564.68),
+(2023, 'November', 2273864.85),
+(2023, 'December', 2927610.92),
+
+(2024, 'January', 9915163.14),
+(2024, 'February', 2575219.01),
+(2024, 'March', 6757498.04),
+(2024, 'April', 2520428.8),
+(2024, 'May', 9755673.61),
+(2024, 'June', 6966882.85),
+(2024, 'July', 4327591.07),
+(2024, 'August', 1553085.95),
+(2024, 'September', 1838026.05),
+(2024, 'October', 7084788.59),
+(2024, 'November', 9945321.19)
