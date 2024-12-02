@@ -22,5 +22,6 @@ namespace InventorySystemproto1
         
         public static List<InventoryItem> inventoryList = new List<InventoryItem>();
         public static List<OrderItem> orderList = new List<OrderItem>();
+        public static List<SalesChart> salesList = new List<SalesChart>();
     }
 }

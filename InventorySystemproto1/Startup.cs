@@ -23,6 +23,7 @@ namespace InventorySystemproto1
         {
             SqlCommand sqlCommand0 = new SqlCommand("SELECT * FROM InventorySystem_inventory", connection);
             SqlCommand sqlCommand1 = new SqlCommand("SELECT * FROM InventorySystem_orderhistory", connection1);
+            SqlCommand sqlCommand2 = new SqlCommand("SELECT * FROM InventorySystem_sales WHERE Year=2024", connection1);
 
             try
             {
@@ -52,6 +53,17 @@ namespace InventorySystemproto1
                              reader.GetString(6)));
                     }
                 }
+
+                  using (SqlDataReader reader = sqlCommand2.ExecuteReader())
+                  {
+                      while (reader.Read())
+                      {
+                        salesList.Add(new SalesChart(
+                             reader.GetInt32(0),
+                             reader.GetString(1),
+                             reader.GetDecimal(2)));
+                      }
+                  }
 
                 timer.Stop();
                 new MainWindow(this).Show();

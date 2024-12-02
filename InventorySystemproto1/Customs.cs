@@ -61,7 +61,7 @@ namespace InventorySystemproto1
                 this.id = id;
                 this.brand = brand;
                 this.model = model;
-                this.category = category; 
+                this.category = category;
                 this.orderStatus = orderStatus;
                 this.dateAdded = dateAdded;
                 this.quantity = quantity;
@@ -108,6 +108,40 @@ namespace InventorySystemproto1
                 get { return quantity; }
                 set { quantity = value; }
             }
+        }
+
+        public class SalesChart
+        {
+            int year;
+            string month;
+            decimal sales;
+
+
+            public SalesChart(int year, string month, decimal sales)
+            {        
+
+                    this.year = year;
+                    this.month = month;
+                    this.sales = sales;
+            }
+
+            public int Year {
+                get { return year; } 
+                set { year = value; }   
+            }
+
+            public string Month
+            {
+                get { return month; }
+                set { month = value; }
+            }
+
+            public decimal Sales
+            {
+                get { return sales; }
+                set { sales = value; }
+            }
+
         }
     }
 }

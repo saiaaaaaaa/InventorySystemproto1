@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using static InventorySystemproto1.Constants;
 using static InventorySystemproto1.Customs;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+
 
 
 namespace InventorySystemproto1
@@ -16,6 +14,8 @@ namespace InventorySystemproto1
     public partial class OrderHistory : Form
     {
         BindingSource bindingSource = new BindingSource();
+        bool incomingBtnClicked, deliveredBtnClicked, 
+            cancelledBtnClicked, allOrdersBtnClicked = false;
 
         public OrderHistory()
         {
@@ -25,48 +25,84 @@ namespace InventorySystemproto1
 
             dateTimePicker1.CustomFormat = "MM/dd/yyyy";
             dateTimePicker2.CustomFormat = "MM/dd/yyyy";
+
         }
 
         private void btn_allOrders_Click(object sender, EventArgs e)
-        {
+        { 
             bindingSource.Clear();
             BindData();
+
+            allOrdersBtnClicked = true;
+            incomingBtnClicked = false;
+            deliveredBtnClicked = false;
+            cancelledBtnClicked = false;
+
+            
         }
 
         private void btn_incoming_Click(object sender, EventArgs e)
-        {
-            bindingSource.Clear();
+        { 
             var incomingList = orderList.Where(item => item.OrderStatus == "Incoming").ToList();
-            filterTable(incomingList);
+            FilterTable(incomingList);
+
+            incomingBtnClicked = true;
+            allOrdersBtnClicked = false;
+            deliveredBtnClicked = false;
+            cancelledBtnClicked = false;
         }
 
         private void btn_delivered_Click(object sender, EventArgs e)
         {
-            bindingSource.Clear();
             var deliveredList = orderList.Where(item => item.OrderStatus == "Delivered").ToList();
-            filterTable(deliveredList);
+            FilterTable(deliveredList);
+
+            deliveredBtnClicked = true;
+            allOrdersBtnClicked = false;
+            incomingBtnClicked = false;
+            cancelledBtnClicked = false;
         }
 
         private void btn_cancelled_Click(object sender, EventArgs e)
         {
-            bindingSource.Clear();
             var cancelledList = orderList.Where(item => item.OrderStatus == "Cancelled").ToList();
-            filterTable(cancelledList);
+            FilterTable(cancelledList);
+
+            cancelledBtnClicked = true;
+            allOrdersBtnClicked = false;
+            incomingBtnClicked = false;
+            deliveredBtnClicked = false;
         }
 
         private void dateTimePicker1_ValueChanged_1(object sender, EventArgs e)
         {
-            DateRange();
+            FilterByButton();
         }
 
         private void dateTimePicker2_ValueChanged_1(object sender, EventArgs e)
         {
-            DateRange();
+            FilterByButton();
         }
 
-
-
-
+        void FilterByButton() 
+        {
+            if (incomingBtnClicked == true)
+            {
+                FilterByDate("Incoming");
+            }
+            else if (deliveredBtnClicked == true)
+            {
+                FilterByDate("Delivered");
+            }
+            else if (cancelledBtnClicked == true)
+            {
+                FilterByDate("Cancelled");
+            }
+            else if (allOrdersBtnClicked == true)
+            {
+                FilterByDate();
+            }
+        }
 
         void BindData()
         {
@@ -79,28 +115,52 @@ namespace InventorySystemproto1
 
                 dataGridView1.DataSource = bindingSource;
             }
+            
         }
 
-        void filterTable(IEnumerable i)
+
+        void FilterTable(IEnumerable i)
         {
             foreach (var item in i)
             {
                 bindingSource.Add(item);
             }
+
             dataGridView1.DataSource = i;
+
+            if (dataGridView1.Rows.Count < 1)
+            {
+                MessageBox.Show("No results found.");
+            }
         }
 
-        void DateRange()
+        void FilterByDate(string activeButton)
         {
             bindingSource.Clear();
-            var dateAdded = orderList.Where(item => item.DateAdded >= dateTimePicker1.Value && item.DateAdded <= dateTimePicker2.Value).ToList();
-            filterTable(dateAdded);
+            var dateAdded = orderList.Where(item => item.DateAdded >= dateTimePicker1.Value 
+                                                 && item.DateAdded <= dateTimePicker2.Value
+                                                 && item.OrderStatus == activeButton).ToList();
+
+            FilterTable(dateAdded);
 
             if (dateTimePicker1.Value > dateTimePicker2.Value || dateTimePicker2.Value < dateTimePicker1.Value)
             {
                 MessageBox.Show("Please select a valid date range.");
             }
         }
-        
+
+        void FilterByDate()
+        {
+            bindingSource.Clear();
+            var dateAdded = orderList.Where(item => item.DateAdded >= dateTimePicker1.Value
+                                                 && item.DateAdded <= dateTimePicker2.Value).ToList();
+
+            FilterTable(dateAdded);
+
+            if (dateTimePicker1.Value > dateTimePicker2.Value || dateTimePicker2.Value < dateTimePicker1.Value)
+            {
+                MessageBox.Show("Please select a valid date range.");
+            }
+        }
     }
 }
