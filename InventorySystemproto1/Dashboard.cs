@@ -20,7 +20,7 @@ namespace InventorySystemproto1
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            //overviews
+            //overviews            
             int totalProducts = inventoryList.Where(item => !string.IsNullOrEmpty(item.Model)).
                                 Select(item => item.Model).
                                 Distinct().Count();
@@ -54,9 +54,7 @@ namespace InventorySystemproto1
                 }
 
                 chart1.DataSource = bindingSource;
-            }
-
-            
+            }     
         }
    
 

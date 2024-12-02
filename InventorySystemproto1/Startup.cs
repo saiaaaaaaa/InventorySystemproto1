@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 using static InventorySystemproto1.Constants;
 using static InventorySystemproto1.Customs;
@@ -23,7 +24,7 @@ namespace InventorySystemproto1
         {
             SqlCommand sqlCommand0 = new SqlCommand("SELECT * FROM InventorySystem_inventory", connection);
             SqlCommand sqlCommand1 = new SqlCommand("SELECT * FROM InventorySystem_orderhistory", connection1);
-            SqlCommand sqlCommand2 = new SqlCommand("SELECT * FROM InventorySystem_sales WHERE Year=2024", connection1);
+            SqlCommand sqlCommand2 = new SqlCommand("SELECT * FROM InventorySystem_sales WHERE Year=2024", connection1); 
 
             try
             {
@@ -44,7 +45,7 @@ namespace InventorySystemproto1
                     while (reader.Read())
                     {
                         orderList.Add(new OrderItem(
-                             reader["OrderID"].ToString(),
+                             OrderIDFormat(reader["OrderID"].ToString()).ToString(),
                              reader.GetString(1),
                              reader.GetString(2),
                              reader.GetString(3),
@@ -54,16 +55,16 @@ namespace InventorySystemproto1
                     }
                 }
 
-                  using (SqlDataReader reader = sqlCommand2.ExecuteReader())
-                  {
-                      while (reader.Read())
-                      {
+                using (SqlDataReader reader = sqlCommand2.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
                         salesList.Add(new SalesChart(
                              reader.GetInt32(0),
                              reader.GetString(1),
                              reader.GetDecimal(2)));
-                      }
-                  }
+                    }
+                }
 
                 timer.Stop();
                 new MainWindow(this).Show();
@@ -75,5 +76,18 @@ namespace InventorySystemproto1
                 Application.Exit();
             }
         }
+
+
+        string OrderIDFormat(string orderID)
+        {
+            string idFormat = orderID.Insert(0, "000000");
+
+            if (idFormat.Length > 6)
+            {
+                idFormat = idFormat.Remove(0, idFormat.Length - 6);
+            }
+            return idFormat;
+        }
+
     }
 }
