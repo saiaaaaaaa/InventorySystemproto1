@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 namespace InventorySystemproto1
 {
     public class Customs
@@ -91,12 +92,14 @@ namespace InventorySystemproto1
                 set { category = value; }
             }
 
+            [DisplayName("Order Status")]
             public string OrderStatus
             {
                 get { return orderStatus; }
                 set { orderStatus = value; }
             }
 
+            [DisplayName("Date Added")]
             public DateTime DateAdded
             {
                 get { return dateAdded; }
