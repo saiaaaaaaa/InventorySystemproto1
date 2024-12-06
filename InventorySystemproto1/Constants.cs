@@ -9,7 +9,7 @@ namespace InventorySystemproto1
         //NOTE: localhost sql server
         //NOTE: connect to localdb using server explorer 
         static string hostname1 = "Data Source=Saga\\SQLEXPRESS;"; //NOTE: change to your local host name
-        static string database1 = "Initial Catalog=inventoryDB;;"; //NOTE: change to your local db name
+        static string database1 = "Initial Catalog=inventoryDB;"; //NOTE: change to your local db name
         public static SqlConnection connection1 = new SqlConnection(hostname1 + database1 + "Integrated Security=True;");
 
 
@@ -23,5 +23,7 @@ namespace InventorySystemproto1
         public static List<InventoryItem> inventoryList = new List<InventoryItem>();
         public static List<OrderItem> orderList = new List<OrderItem>();
         public static List<SalesChart> salesList = new List<SalesChart>();
+
+        public static string searchTerm = string.Empty;
     }
 }

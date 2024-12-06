@@ -14,6 +14,7 @@ namespace InventorySystemproto1
         public Startup()
         {
             InitializeComponent();
+            DoubleBuffered = true;
 
             timer.Interval = 5200;
             timer.Tick += Timer_Tick;

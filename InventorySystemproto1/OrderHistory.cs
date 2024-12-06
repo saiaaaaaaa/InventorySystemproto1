@@ -5,6 +5,7 @@ using static InventorySystemproto1.Constants;
 using static InventorySystemproto1.Customs;
 using System.Collections;
 using System.Drawing;
+using System.Collections.Generic;
 
 
 
@@ -19,6 +20,7 @@ namespace InventorySystemproto1
         public OrderHistory()
         {
             InitializeComponent();
+            DoubleBuffered = true;
 
             BindData();
 
@@ -160,18 +162,30 @@ namespace InventorySystemproto1
     */
 
 
-        void BindData()
+        public void BindData()
         {
-            if (orderList.Count > 0)
+            bindingSource.Clear();
+
+            List<OrderItem> temp = new List<OrderItem>();
+            foreach (OrderItem item in orderList)
             {
-                foreach (OrderItem item in orderList)
-                {                    
+                if (searchTerm != string.Empty && (item.Brand.Contains(searchTerm.ToUpper()) || item.Model.Contains(searchTerm.ToUpper()) || item.Category.Contains(searchTerm.ToUpper())))
+                {
+                    temp.Add(item);
+                }
+                else if (searchTerm == string.Empty)
+                {
+                    temp.Add(item);
+                }
+            }
+            if (temp.Count > 0)
+            {
+                foreach (OrderItem item in temp)
+                {
                     bindingSource.Add(item);
                 }
-               
-                dataGridView1.DataSource = bindingSource;               
+                dataGridView1.DataSource = bindingSource;
             }
-            
         }
 
  

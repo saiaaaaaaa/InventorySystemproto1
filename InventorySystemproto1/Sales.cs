@@ -15,6 +15,7 @@ namespace InventorySystemproto1
         public Sales()
         {
             InitializeComponent();
+            DoubleBuffered = true;
         }
     }
 }
