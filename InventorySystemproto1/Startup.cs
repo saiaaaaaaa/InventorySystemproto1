@@ -15,7 +15,7 @@ namespace InventorySystemproto1
         {
             InitializeComponent();
 
-            timer.Interval = 1000;
+            timer.Interval = 5200;
             timer.Tick += Timer_Tick;
             timer.Start();
         }

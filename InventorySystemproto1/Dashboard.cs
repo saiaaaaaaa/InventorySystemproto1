@@ -29,10 +29,10 @@ namespace InventorySystemproto1
             int totalStocks = inventoryList.Sum(item => item.Stock);
             int outOfStocks = inventoryList.Count(item => item.Category.All(category => item.Stock == 0));
 
-            button1.Text = "Total products:" + totalProducts;
+            button1.Text = "Total Products: " + totalProducts;
             button2.Text = "Orders: " + totalOrders;
-            button3.Text = "Total stocks: " + totalStocks;
-            button4.Text = "Out of stocks:" + outOfStocks;
+            button3.Text = "Total Stock: " + totalStocks;
+            button4.Text = "Out of Stock:" + outOfStocks;
  
 
             //chart          
@@ -56,7 +56,6 @@ namespace InventorySystemproto1
                 chart1.DataSource = bindingSource;
             }     
         }
-   
 
     }
 }

@@ -26,6 +26,7 @@ namespace InventorySystemproto1
             forms.Add(new Sales());
             forms.Add(new OrderHistory());
             forms.Add(new AboutUs());
+            
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -40,14 +41,15 @@ namespace InventorySystemproto1
 
         void ChangeForm(int activeForm)
         {
-            tabs[activeForm].BackColor = Color.Green;
-            tabs[activeForm].ForeColor = Color.White;
+            tabs[activeForm].BackColor = Color.Transparent;
+            tabs[activeForm].ForeColor = Color.Black;
+            
             foreach (Button b in tabs)
             {
                 if (b != tabs[activeForm])
                 {
-                    b.BackColor = SystemColors.Control;
-                    b.ForeColor = SystemColors.ControlText;
+                    b.BackColor = Color.Transparent;
+                    b.ForeColor = Color.White;
                 }
             }
 
@@ -68,21 +70,6 @@ namespace InventorySystemproto1
             }
         }
 
-        private void button1_Click(object sender, System.EventArgs e)
-        {
-            ChangeForm(0);
-        }
-
-        private void button2_Click(object sender, System.EventArgs e)
-        {
-            ChangeForm(1);
-        }
-
-        private void button3_Click(object sender, System.EventArgs e)
-        {
-            ChangeForm(2);
-        }
-
         private void button4_Click(object sender, System.EventArgs e)
         {
             ChangeForm(3);
@@ -91,6 +78,21 @@ namespace InventorySystemproto1
         private void button5_Click(object sender, System.EventArgs e)
         {
             ChangeForm(4);
+        }
+
+        private void button1_Click_1(object sender, System.EventArgs e)
+        {
+            ChangeForm(0);
+        }
+
+        private void button2_Click_1(object sender, System.EventArgs e)
+        {
+            ChangeForm(1);
+        }
+
+        private void button3_Click_1(object sender, System.EventArgs e)
+        {
+            ChangeForm(2);
         }
     }
 }

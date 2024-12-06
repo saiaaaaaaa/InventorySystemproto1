@@ -4,8 +4,7 @@ using System.Windows.Forms;
 using static InventorySystemproto1.Constants;
 using static InventorySystemproto1.Customs;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
+using System.Drawing;
 
 
 
@@ -26,12 +25,20 @@ namespace InventorySystemproto1
             dateTimePicker1.CustomFormat = "MM/dd/yyyy";
             dateTimePicker2.CustomFormat = "MM/dd/yyyy";
 
+            dataGridView1.Columns.Add("checkboxDelivered", "Select");
+
         }
 
         private void btn_allOrders_Click(object sender, EventArgs e)
         { 
             bindingSource.Clear();
             BindData();
+
+           /* btn_allOrders.BackColor = System.Drawing.Color.Green;
+            btn_incoming.BackColor = SystemColors.Control;
+            btn_cancelled.BackColor = SystemColors.Control;
+            btn_delivered.BackColor = SystemColors.Control;
+           */
 
             allOrdersBtnClicked = true;
             incomingBtnClicked = false;
@@ -44,8 +51,13 @@ namespace InventorySystemproto1
         private void btn_incoming_Click(object sender, EventArgs e)
         { 
             var incomingList = orderList.Where(item => item.OrderStatus == "Incoming").ToList();
-            FilterTable(incomingList);
+            FillTableWith(incomingList);
 
+          /*  btn_incoming.BackColor = System.Drawing.Color.Green;
+            btn_allOrders.BackColor = SystemColors.Control;
+            btn_cancelled.BackColor = SystemColors.Control;
+            btn_delivered.BackColor = SystemColors.Control;
+*/
             incomingBtnClicked = true;
             allOrdersBtnClicked = false;
             deliveredBtnClicked = false;
@@ -54,9 +66,17 @@ namespace InventorySystemproto1
 
         private void btn_delivered_Click(object sender, EventArgs e)
         {
+            //dataGridView1.Columns.Add("checkboxDelivered", "Select");
             var deliveredList = orderList.Where(item => item.OrderStatus == "Delivered").ToList();
-            FilterTable(deliveredList);
+            FillTableWith(deliveredList);
 
+            //change button color when clicked
+          /*  btn_delivered.BackColor = System.Drawing.Color.Green;
+            btn_allOrders.BackColor = SystemColors.Control;
+            btn_incoming.BackColor = SystemColors.Control;
+            btn_cancelled.BackColor = SystemColors.Control;
+            
+            */
             deliveredBtnClicked = true;
             allOrdersBtnClicked = false;
             incomingBtnClicked = false;
@@ -66,7 +86,13 @@ namespace InventorySystemproto1
         private void btn_cancelled_Click(object sender, EventArgs e)
         {
             var cancelledList = orderList.Where(item => item.OrderStatus == "Cancelled").ToList();
-            FilterTable(cancelledList);
+            FillTableWith(cancelledList);
+
+          /*  btn_cancelled.BackColor = System.Drawing.Color.Green;
+            btn_allOrders.BackColor = SystemColors.Control;
+            btn_incoming.BackColor = SystemColors.Control; 
+            btn_delivered.BackColor = SystemColors.Control;
+            */
 
             cancelledBtnClicked = true;
             allOrdersBtnClicked = false;
@@ -76,7 +102,7 @@ namespace InventorySystemproto1
 
         private void dateTimePicker1_ValueChanged_1(object sender, EventArgs e)
         {
-            FilterByButton();
+           FilterByButton();
         }
 
         private void dateTimePicker2_ValueChanged_1(object sender, EventArgs e)
@@ -84,25 +110,55 @@ namespace InventorySystemproto1
             FilterByButton();
         }
 
-        void FilterByButton() 
+            void FilterByButton() 
+            {
+                if (incomingBtnClicked == true)
+                {
+                    FilterByDate("Incoming");
+                }
+                else if (deliveredBtnClicked == true)
+                {
+                    FilterByDate("Delivered");
+                }
+                else if (cancelledBtnClicked == true)
+                {
+                    FilterByDate("Cancelled");
+                }
+                else if (allOrdersBtnClicked == true)
+                {
+                    FilterByDate();
+                }
+            }
+
+    /*    void FilterByButton(int activeButton, string orderStatus)
         {
-            if (incomingBtnClicked == true)
+            if (activeButton == 0)
             {
-                FilterByDate("Incoming");
-            }
-            else if (deliveredBtnClicked == true)
-            {
-                FilterByDate("Delivered");
-            }
-            else if (cancelledBtnClicked == true)
-            {
-                FilterByDate("Cancelled");
-            }
-            else if (allOrdersBtnClicked == true)
-            {
+                //all orders
                 FilterByDate();
             }
+            else if (activeButton == 1)
+            {
+                //incoming
+                FilterByDate(orderStatus);
+            }
+            else if (activeButton == 2)
+            {
+                //delivered
+                FilterByDate(orderStatus);
+            }
+            else if (activeButton == 3)
+            {
+                //cancelled
+                FilterByDate(orderStatus);
+            }
+            else 
+            { 
+                
+            }
         }
+    */
+
 
         void BindData()
         {
@@ -112,21 +168,23 @@ namespace InventorySystemproto1
                 {                    
                     bindingSource.Add(item);
                 }
-
-                dataGridView1.DataSource = bindingSource;
+               
+                dataGridView1.DataSource = bindingSource;               
             }
             
         }
 
+ 
 
-        void FilterTable(IEnumerable i)
+        void FillTableWith(IEnumerable status)
         {
-            foreach (var item in i)
+            foreach (var item in status)
             {
                 bindingSource.Add(item);
             }
 
-            dataGridView1.DataSource = i;
+            dataGridView1.DataSource = status;
+            
 
             if (dataGridView1.Rows.Count < 1)
             {
@@ -141,7 +199,7 @@ namespace InventorySystemproto1
                                                  && item.DateAdded <= dateTimePicker2.Value
                                                  && item.OrderStatus == activeButton).ToList();
 
-            FilterTable(dateAdded);
+            FillTableWith(dateAdded);
 
             if (dateTimePicker1.Value > dateTimePicker2.Value || dateTimePicker2.Value < dateTimePicker1.Value)
             {
@@ -155,7 +213,7 @@ namespace InventorySystemproto1
             var dateAdded = orderList.Where(item => item.DateAdded >= dateTimePicker1.Value
                                                  && item.DateAdded <= dateTimePicker2.Value).ToList();
 
-            FilterTable(dateAdded);
+            FillTableWith(dateAdded);
 
             if (dateTimePicker1.Value > dateTimePicker2.Value || dateTimePicker2.Value < dateTimePicker1.Value)
             {
